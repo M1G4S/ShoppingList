@@ -29,5 +29,5 @@ This project is a shopping list application developed with React for the fronten
   - PostgreSQL (database)
 
 - **Deployment**:
-  - Backend: Heroku
+  - Backend: Railway
   - Frontend: Vercel
