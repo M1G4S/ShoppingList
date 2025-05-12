@@ -8,7 +8,14 @@ const productRoutes = require('./routes/product');
 const shoppingListRoutes = require('./routes/shoppingListRoutes');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://nome-do-projeto.vercel.app' //Versel depois
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
