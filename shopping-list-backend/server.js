@@ -22,6 +22,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api', protectedRoutes);
 app.use('/api', productRoutes);
 app.use('/api', shoppingListRoutes);
+app.get('/debug', (req, res) => {
+  res.send('API ativa!');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
