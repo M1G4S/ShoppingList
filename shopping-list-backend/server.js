@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://nome-do-projeto.vercel.app' //Versel depois
+    'https://shopping-list-frontend-three.vercel.app' //Versel depois
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
