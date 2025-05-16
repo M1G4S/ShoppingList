@@ -350,6 +350,7 @@ function Dashboard() {
               setSelectedProduct(null);
               setShowForm(true);
               setShowEditForm(false);
+              console.log(products);
             }}>
               ➕ Adicionar novo produto
             </Button>

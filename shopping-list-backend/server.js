@@ -8,13 +8,23 @@ const productRoutes = require('./routes/product');
 const shoppingListRoutes = require('./routes/shoppingListRoutes');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://shopping-list-frontend-three.vercel.app' //Versel depois
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api', protectedRoutes);
 app.use('/api', productRoutes);
 app.use('/api', shoppingListRoutes);
+app.get('/debug', (req, res) => {
+  res.send('API ativa!');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
