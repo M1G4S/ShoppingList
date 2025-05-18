@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
 const productRoutes = require('./routes/product');
 const shoppingListRoutes = require('./routes/shoppingListRoutes');
+const categoriasRoutes = require('./routes/categorias');
 
 const app = express();
 app.use(cors({
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', protectedRoutes);
 app.use('/api', productRoutes);
 app.use('/api', shoppingListRoutes);
+app.use('/api', categoriasRoutes);
 app.get('/debug', (req, res) => {
   res.send('API ativa!');
 });
