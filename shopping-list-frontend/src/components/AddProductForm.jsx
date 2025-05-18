@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import api from '../services/api';
+import { FaNotesMedical } from 'react-icons/fa';
 
 const Button = styled.button`
   background-color: #007bff;
@@ -92,7 +93,7 @@ const SuggestionItem = styled.li`
   }
 `;
 
-const DeleteButton = styled.button`
+const DeleteButton = styled.div`
   background: transparent;
   border: none;
   cursor: pointer;
@@ -150,21 +151,30 @@ function AddProductForm({ onProductAdded, existingProduct, onClose, userId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const nomeT = nome.trim();
+    const imagemUrlT = imagemUrl.trim();
+    const categoriaT = categoria.trim();
+
+    if (nomeT === "" || imagemUrlT === "" ||categoriaT === "") {
+      alert("Existem campos inválidos!");
+      return;
+    }
 
     try {
       if (existingProduct) {
         // PUT para atualizar
-        await api.put(`/produtos/${existingProduct.id}`, { nome, imagemUrl, categoria }, {
+        await api.put(`/produtos/${existingProduct.id}`, { nome: nomeT, imagemUrl: imagemUrlT, categoria: categoriaT }, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
         // POST para novo
-        await api.post('/produtos', { nome, imagemUrl, categoria }, {
+        await api.post('/produtos', { nome: nomeT, imagemUrl: imagemUrlT, categoria: categoriaT }, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
 
-      await api.post(`/users/${userId}/categorias`, { categoria }, {
+      await api.post(`/users/${userId}/categorias`, { categoria: categoriaT }, {
           headers: { Authorization: `Bearer ${token}` },
       });
 
