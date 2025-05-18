@@ -200,6 +200,7 @@ function Dashboard() {
                 onClose={() => {
                   setShowForm(false);
                 }}
+                userId={user.userId}
               />
             </div>
           )}

@@ -36,7 +36,7 @@ const addCategoriaToUser = async (req, res) => {
     }
 
     if (user.categorias.includes(categoria)) {
-      return res.status(400).json({ error: 'Categoria já existe para este user' });
+      return res.json({ categorias: user.categorias });
     }
 
     const updatedUser = await prisma.user.update({
